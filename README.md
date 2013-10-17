@@ -56,4 +56,4 @@ curl -iv \
   --url https://api.jumpcloud.com/api/systems/${systemKey}
 ```
 
-Make the API call sending the signature has the Authorization header and the Date header with the same value what was used in the signing string.
+Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
