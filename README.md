@@ -4,7 +4,7 @@ JumpCloud System Context API
 ## Introduction
 
 The JumpCloud System Context API is a REST API for manipulating the system a JumpCloud Agent is installed on. 
-To use the System Context API you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://jumpcloud.com/systems).
+To use the System Context API you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://console.jumpcloud.com/systems).
 From the system that has the JumpCloud Agent you can now use the REST API in the context of that system. 
 
 ### Authentication
