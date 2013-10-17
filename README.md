@@ -57,3 +57,4 @@ curl -iv \
 ```
 
 Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
+This particular API request is simply requesting the entire system record. 
