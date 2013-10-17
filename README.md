@@ -62,7 +62,7 @@ This particular API request is simply requesting the entire system record.
 
 ### Routes
 
-**NOTE: The :id must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
+**NOTE: The :id url parameter must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
 
 <table style="width : 100%">
   <thead>
@@ -124,6 +124,10 @@ This particular API request is simply requesting the entire system record.
   </tbody>
 </table>
 
+
+### Route parameters and data structures
+
+sdf sdf dsfs dffds df
 
 
 <a href="#get-system-id"></a>
