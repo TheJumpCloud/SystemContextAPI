@@ -1,6 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-systemKey="525ee96f52e144993e000015"
+conf="`cat /opt/jc/jcagent.conf`"
+regex="systemKey\":\"(\w+)\""
+
+if [[ $conf =~ $regex ]] ; then
+  systemKey="${BASH_REMATCH[1]}"
+fi
 
 now=`date -u "+%a, %d %h %Y %H:%M:%S GMT"`;
 signstr="GET /api/systems/${systemKey} HTTP/1.1\ndate: ${now}"
