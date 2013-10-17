@@ -15,4 +15,4 @@ curl -iv \
   -H "Accept: application/json" \
   -H "Date: ${now}" \
   -H "Authorization: Signature keyId=\"system/${systemKey}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"${signature}\"" \
-  --url https://api.jumpcloud.com/api/systems/{systemKey}
+  --url https://api.jumpcloud.com/api/systems/${systemKey}
