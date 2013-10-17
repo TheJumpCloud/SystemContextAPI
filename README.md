@@ -58,3 +58,78 @@ curl -iv \
 
 Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
 This particular API request is simply requesting the entire system record. 
+
+
+### Routes
+
+**NOTE: The :id must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
+
+<table style="width : 100%">
+  <thead>
+    <tr>
+      <td>
+        <strong>Resource</strong>
+      </td>
+      <td>
+        <strong>Description</strong>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="#get-system">GET /api/systems/:id</a>
+      </td>
+      <td>
+        Returns the system record specified by the :id url parameter.
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <a href="#put-system">PUT /api/systems/:id</a>
+      </td>
+      <td>
+        Update properties of the system.
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <a href="#get-tags">GET /api/tags</a>
+      </td>
+      <td>
+        Return tags for your organization. 
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <a href="#get-system-tags">GET /api/systems/:id/tags</a>
+      </td>
+      <td>
+        Get the tags associated to a system.
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <a href="#put-system-tags">PUT /api/systems/:id/tags</a>
+      </td>
+      <td>
+        Update the tags associated to a system.
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+
+
+<a href="#get-system-id"></a>
+
+### GET /api/systems/:id 
+
+
+
+
