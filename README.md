@@ -11,7 +11,8 @@ From the system that has the JumpCloud Agent you can now use the REST API in the
 * [Routes](#Routes)
 * [Parameters and Data Structures](#Parameters)
 
-[Authentication]
+
+<a id="Authentication" />
 ### Authentication
 
 To allow for secure access to the API you must authentication each API request. 
@@ -64,7 +65,7 @@ curl -iv \
 Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
 This particular API request is simply requesting the entire system record. 
 
-[Routes]
+<a id="Routes" />
 ### Routes
 
 **NOTE: The :id url parameter must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
@@ -129,7 +130,7 @@ This particular API request is simply requesting the entire system record.
   </tbody>
 </table>
 
-[Parameters]
+<a id="Parameters" />
 ### Parameters and data structures
 
 sdf sdf dsfs dffds df
