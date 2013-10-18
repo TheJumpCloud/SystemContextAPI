@@ -895,7 +895,22 @@ Sample output...
 
 `fields` restrict the returning fields of the updated system object
 
-#### Accepted input
+#### Updatable fields
+
+| Field                          | Data type |Allowed values| Description |
+|--------------------------------|-----------|--------------|-------------|
+| displayName                    | String    | *any string* | The name to display in the UI for a system. |
+| allowSshPasswordAuthentication | Boolean   | *true/false* | If `true` the system will allow ssh password authentication, if `false` all password authentication attempts will be rejected |
+| allowSshRootLogin              | Boolean   | *true/false* | If `true` the `root` account will be allowed to login via ssh, if `false` the root account will be denied access via ssh.
+| allowMultiFactorAuthentication | Boolean   | *true/false* | If `true` the multifactor pam module will be enabled and users configured to use multi factor auth will be able take advantage.
+| allowPublicKeyAuthentication   | Boolean   | *true/false* | If `true` the system will allow JumpCloud managed public keys to be used to authenticate users. |
+| agentBoundMessages             | Boolean   | 
+
+#### Returns
+
+Returns a single system object.
+
+Sample output...
 
 
 ### GET /api/tags 
