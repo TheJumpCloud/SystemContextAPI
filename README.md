@@ -1,18 +1,27 @@
 JumpCloud System Context API
 ================
 
-## Introduction
+* [Introduction](#introduction)
+* [Authentication](#authentication)
+* [Routes](#routes)
+* [Parameters](#parameters)
 
-The JumpCloud System Context API is a REST API for manipulating the system the JumpCloud Agent is installed on. 
-To use the System Context API you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://jumpcloud.com/systems).
+### Introduction
+
+The JumpCloud System Context API is a REST API for manipulating the system a JumpCloud Agent is installed on. 
+To use the System Context API you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://console.jumpcloud.com/systems).
 From the system that has the JumpCloud Agent you can now use the REST API in the context of that system. 
+
 
 ### Authentication
 
 To allow for secure access to the API you must authentication each API request. 
 The JumpCloud API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
 HTTP Signatues is similar to the Amazon Web Services REST API where you send a signature with each request.
-To help with the request signing process there is an [example bash script](/shell/SigningExample.sh). Let's have a look at it...
+To help with the request signing process there is an [example bash script](/shell/SigningExample.sh). 
+
+
+Let's have a look...
 
 ```
 #!/bin/bash
@@ -56,4 +65,47 @@ curl -iv \
   --url https://api.jumpcloud.com/api/systems/${systemKey}
 ```
 
-Make the API call sending the signature has the Authorization header and the Date header tith the same value what was used in the signing string.
+Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
+This particular API request is simply requesting the entire system record. 
+
+
+### Routes
+
+**NOTE: The :id url parameter must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
+
+|Resource|Description|
+|--------|-----------|
+|[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record specified by the :id url parameter.|
+|[PUT /api/systems/:id](#put-apisystemsid)|Update properties of the system.|
+|[GET /api/tags](#get-apitags)|Return tags for your organization.|
+|[GET /api/systems/:id/tags](#get-apisystemsidtags)|Get the tags associated to a system.|
+|[PUT /api/systems/:id/tags](#put-apisystemsidtags)|Update the tags associated to a system.|
+
+
+### Parameters
+
+|Parameter(s)|Description|Usage|
+|---------|-----------------|-----|
+|`limit` `skip`| `limit` will limit the returned results and `skip` will skip results.  | ` /api/tags?limit=5&skip=1` return records 2 - 6 . |
+|`sort`         | `sort` will sort results by the given field name.                      | `/api/tags?sort=name&limit=5` return tags sorted ascending by name. `/api/tags?sort=-name&limit=5` return tags sorted descending by name. |
+|`fields`       | `fields` is a space separated string of filed names to include or exclude from the returning result(s). | `/api/system/:id?fields=-patches -logins` |
+
+
+### GET /api/systems/:id
+
+#### Parameters
+
+`fields`
+
+
+### PUT /api/systems/:id 
+
+
+### GET /api/tags 
+
+
+### GET /api/systems/:id/tags
+
+
+### PUT /api/systems/:id/tags
+
