@@ -18,7 +18,10 @@ From the system that has the JumpCloud Agent you can now use the REST API in the
 To allow for secure access to the API you must authentication each API request. 
 The JumpCloud API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
 HTTP Signatues is similar to the Amazon Web Services REST API where you send a signature with each request.
-To help with the request signing process there is an [example bash script](/shell/SigningExample.sh). Let's have a look at it...
+To help with the request signing process there is an [example bash script](/shell/SigningExample.sh). 
+
+
+Let's have a look...
 
 ```
 #!/bin/bash
