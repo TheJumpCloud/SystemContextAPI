@@ -73,72 +73,30 @@ This particular API request is simply requesting the entire system record.
 
 **NOTE: The :id url parameter must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
 
-<table style="width : 100%">
-  <thead>
-    <tr>
-      <td>
-        <strong>Resource</strong>
-      </td>
-      <td>
-        <strong>Description</strong>
-      </td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <a href="#get-apisystemsid">GET /api/systems/:id</a>
-      </td>
-      <td>
-        Returns a single system record specified by the :id url parameter.
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <a href="#put-apisystemsid">PUT /api/systems/:id</a>
-      </td>
-      <td>
-        Update properties of the system.
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <a href="#get-apitags">GET /api/tags</a>
-      </td>
-      <td>
-        Return tags for your organization. 
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <a href="#get-apisystemsidtags">GET /api/systems/:id/tags</a>
-      </td>
-      <td>
-        Get the tags associated to a system.
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <a href="#put-apisystemsidtags">PUT /api/systems/:id/tags</a>
-      </td>
-      <td>
-        Update the tags associated to a system.
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
+|Resource|Description|
+|--------|-----------|
+|[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record specified by the :id url parameter.|
+|[PUT /api/systems/:id](#put-apisystemsid)|Update properties of the system.|
+|[GET /api/tags](#get-apitags)|Return tags for your organization.|
+|[GET /api/systems/:id/tags](#get-apisystemsidtags)|Get the tags associated to a system.|
+|[PUT /api/systems/:id/tags](#put-apisystemsidtags)|Update the tags associated to a system.|
+
 
 ### Parameters and data structures
 
-sdf sdf dsfs dffds df
+|Parameter(s)|Description|Usage|
+|---------|-----------------|-----|
+|`limit`, `skip`| `limit` will limit the returned results and `skip` will skip results. | ` /api/tags?limit=5&skip=1` return records 2 - 6 . |
+|`sort`       | `sort` will sort results by the given field name.                      | `/api/tags?sort=name&limit=5` return tags sorted ascending by name. `/api/tags?sort=-name&limit=5` return tags sorted descending by name. |
+|`fields`     | `fields` is a space separated string of filed names to include or exclude from the returning result(s). | 'fiels' |
 
 
-### GET /api/systems/:id 
+### GET /api/systems/:id
+
+#### Parameters
+
+|Name|Description|
+|fields|  |
 
 
 ### PUT /api/systems/:id 
