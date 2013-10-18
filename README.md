@@ -4,7 +4,7 @@ JumpCloud System Context API
 * [Introduction](#introduction)
 * [Authentication](#authentication)
 * [Routes](#routes)
-* [Parameters and Data Structures](#parameters-and-data-structures)
+* [Parameters](#parameters)
 
 ### Introduction
 
@@ -82,21 +82,20 @@ This particular API request is simply requesting the entire system record.
 |[PUT /api/systems/:id/tags](#put-apisystemsidtags)|Update the tags associated to a system.|
 
 
-### Parameters and data structures
+### Parameters
 
 |Parameter(s)|Description|Usage|
 |---------|-----------------|-----|
-|`limit`, `skip`| `limit` will limit the returned results and `skip` will skip results. | ` /api/tags?limit=5&skip=1` return records 2 - 6 . |
-|`sort`       | `sort` will sort results by the given field name.                      | `/api/tags?sort=name&limit=5` return tags sorted ascending by name. `/api/tags?sort=-name&limit=5` return tags sorted descending by name. |
-|`fields`     | `fields` is a space separated string of filed names to include or exclude from the returning result(s). | 'fiels' |
+|`limit` `skip`| `limit` will limit the returned results and `skip` will skip results.  | ` /api/tags?limit=5&skip=1` return records 2 - 6 . |
+|`sort`         | `sort` will sort results by the given field name.                      | `/api/tags?sort=name&limit=5` return tags sorted ascending by name. `/api/tags?sort=-name&limit=5` return tags sorted descending by name. |
+|`fields`       | `fields` is a space separated string of filed names to include or exclude from the returning result(s). | `/api/system/:id?fields=-patches -logins` |
 
 
 ### GET /api/systems/:id
 
 #### Parameters
 
-|Name|Description|
-|fields|  |
+`fields`
 
 
 ### PUT /api/systems/:id 
