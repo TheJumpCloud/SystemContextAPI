@@ -1,9 +1,10 @@
 JumpCloud System Context API
 ================
 
-* [Authentication](#Authentication)
-* [Routes](#Routes)
-* [Parameters and Data Structures](#Parameters)
+* [Introduction](#introduction)
+* [Authentication](#authentication)
+* [Routes](#routes)
+* [Parameters and Data Structures](#parameters-and-data-structures)
 
 ### Introduction
 
@@ -11,7 +12,7 @@ The JumpCloud System Context API is a REST API for manipulating the system a Jum
 To use the System Context API you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://console.jumpcloud.com/systems).
 From the system that has the JumpCloud Agent you can now use the REST API in the context of that system. 
 
-<a id="Authentication" /></a>
+
 ### Authentication
 
 To allow for secure access to the API you must authentication each API request. 
@@ -64,7 +65,7 @@ curl -iv \
 Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
 This particular API request is simply requesting the entire system record. 
 
-<a id="Routes"></a>
+
 ### Routes
 
 **NOTE: The :id url parameter must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
@@ -83,7 +84,7 @@ This particular API request is simply requesting the entire system record.
   <tbody>
     <tr>
       <td>
-        <a href="#get-system">GET /api/systems/:id</a>
+        <a href="#get-apisystemsid">GET /api/systems/:id</a>
       </td>
       <td>
         Returns the system record specified by the :id url parameter.
@@ -92,7 +93,7 @@ This particular API request is simply requesting the entire system record.
     
     <tr>
       <td>
-        <a href="#put-system">PUT /api/systems/:id</a>
+        <a href="#put-apisystemsid">PUT /api/systems/:id</a>
       </td>
       <td>
         Update properties of the system.
@@ -101,7 +102,7 @@ This particular API request is simply requesting the entire system record.
     
     <tr>
       <td>
-        <a href="#get-tags">GET /api/tags</a>
+        <a href="#get-apitags">GET /api/tags</a>
       </td>
       <td>
         Return tags for your organization. 
@@ -110,7 +111,7 @@ This particular API request is simply requesting the entire system record.
     
     <tr>
       <td>
-        <a href="#get-system-tags">GET /api/systems/:id/tags</a>
+        <a href="#get-apisystemsidtags">GET /api/systems/:id/tags</a>
       </td>
       <td>
         Get the tags associated to a system.
@@ -119,7 +120,7 @@ This particular API request is simply requesting the entire system record.
     
     <tr>
       <td>
-        <a href="#put-system-tags">PUT /api/systems/:id/tags</a>
+        <a href="#put-apisystemsidtags">PUT /api/systems/:id/tags</a>
       </td>
       <td>
         Update the tags associated to a system.
@@ -129,16 +130,22 @@ This particular API request is simply requesting the entire system record.
   </tbody>
 </table>
 
-<a id="Parameters"></a>
 ### Parameters and data structures
 
 sdf sdf dsfs dffds df
 
 
-<a href="#get-system-id"></a>
-
 ### GET /api/systems/:id 
 
 
+### PUT /api/systems/:id 
 
+
+### GET /api/tags 
+
+
+### GET /api/systems/:id/tags
+
+
+### PUT /api/systems/:id/tags
 
