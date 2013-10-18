@@ -87,7 +87,7 @@ This particular API request is simply requesting the entire system record.
         <a href="#get-apisystemsid">GET /api/systems/:id</a>
       </td>
       <td>
-        Returns the system record specified by the :id url parameter.
+        Returns a single system record specified by the :id url parameter.
       </td>
     </tr>
     
