@@ -354,7 +354,7 @@ Sample output...
 | allowSshRootLogin              | Boolean   | *true/false* | If `true` the `root` account will be allowed to login via ssh, if `false` the root account will be denied access via ssh.
 | allowMultiFactorAuthentication | Boolean   | *true/false* | If `true` the multifactor pam module will be enabled and users configured to use multi factor auth will be able take advantage.
 | allowPublicKeyAuthentication   | Boolean   | *true/false* | If `true` the system will allow JumpCloud managed public keys to be used to authenticate users. |
-| agentBoundMessages             | Array     | *[{cmd : "check_patches"}],[{cmd : "get_sys_info"}]* | The `check_patches` command will cause the agent to update its patch state with JumpCloud. The `get_sys_info` will cause the agent to update its system info with JumpCloud. |
+| agentBoundMessages             | Array     | *[{cmd : "check_patches"}], [{cmd : "get_sys_info"}]* | The `check_patches` command will cause the agent to update its patch state with JumpCloud. The `get_sys_info` will cause the agent to update its system info with JumpCloud. |
 
 
 #### Returns
