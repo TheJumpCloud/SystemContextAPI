@@ -135,9 +135,6 @@ Here is an abbreviated example of output.
 |[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record specified by the :id url parameter.|
 |[PUT /api/systems/:id](#put-apisystemsid)|Update properties of the system.|
 |[DELETE /api/systems/:id](#delete-apisystemsid)| Delete system and uninstall agent.|
-|[GET /api/systems/:id/tags](#get-apisystemsidtags)|Get the tags associated to a system.|
-|[PUT /api/systems/:id/tags](#put-apisystemsidtags)|Update the tags associated to a system.|
-
 
 ### GET /api/systems/:id
 
@@ -176,6 +173,7 @@ Sample output...
   "version": "12.04.3",
   "patchAlarms": [],
   "dailyEmails": [],
+  "tags" : ["5266df0f9af46c0e724ef13e", "5266df229af46c0e724ef140"],
   "connectionHistory": [
     "2013-10-16T19:30:55.605Z",
     "2013-10-16T19:32:05.900Z",
@@ -354,7 +352,7 @@ Sample output...
 | allowSshRootLogin              | Boolean   | *true/false* | If `true` the `root` account will be allowed to login via ssh, if `false` the root account will be denied access via ssh.
 | allowMultiFactorAuthentication | Boolean   | *true/false* | If `true` the multifactor pam module will be enabled and users configured to use multi factor auth will be able take advantage.
 | allowPublicKeyAuthentication   | Boolean   | *true/false* | If `true` the system will allow JumpCloud managed public keys to be used to authenticate users. |
-
+| tags                           | Array     | *array of strings* | The array values should be the ids, or names, of the tag(s) that you want the system to be associated with. The tags passed will replace any existing tags with the supplied list. |
 
 #### Returns
 
@@ -377,7 +375,8 @@ Sample output...
   
   ... truncated for brevity
   
-}  
+}
+
 ```
 
 
@@ -386,13 +385,4 @@ Sample output...
 This command will uninstall the agent on the system, then will remove the system and its data once the agent has been uninstalled.
 
 
-### GET /api/systems/:id/tags
-
-This command will return the tags associated to the system.
-
-#### Returns
-
-
-
-### PUT /api/systems/:id/tags
 
