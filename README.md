@@ -134,7 +134,6 @@ Here is an abbreviated example of output.
 |--------|-----------|
 |[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record specified by the :id url parameter.|
 |[PUT /api/systems/:id](#put-apisystemsid)|Update properties of the system.|
-|[GET /api/tags](#get-apitags)|Return tags for your organization.|
 |[DELETE /api/systems/:id](#delete-apisystemsid)| Delete system and uninstall agent.|
 |[GET /api/systems/:id/tags](#get-apisystemsidtags)|Get the tags associated to a system.|
 |[PUT /api/systems/:id/tags](#put-apisystemsidtags)|Update the tags associated to a system.|
@@ -363,11 +362,36 @@ Returns a single system object.
 
 Sample output...
 
+```
+
+{
+  "__v": 0,
+  "_id": "525ee96f52e144993e000015",
+  "agentServer": "lappy386",
+  "agentVersion": "0.9.42",
+  "arch": "x86_64",
+  "connectionKey": "127.0.0.1_51812",
+  "displayName": "ubuntu-1204",
+  "firstContact": "2013-10-16T19:30:55.611Z",
+  "hostname": "ubuntu-1204"
+  
+  ... truncated for brevity
+  
+}  
+```
+
 
 ### DELETE /api/systems/:id
 
+This command will uninstall the agent on the system, then will remove the system and its data once the agent has been uninstalled.
+
 
 ### GET /api/systems/:id/tags
+
+This command will return the tags associated to the system.
+
+#### Returns
+
 
 
 ### PUT /api/systems/:id/tags
