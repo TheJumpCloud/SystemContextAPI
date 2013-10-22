@@ -371,7 +371,8 @@ Sample output...
   "connectionKey": "127.0.0.1_51812",
   "displayName": "ubuntu-1204",
   "firstContact": "2013-10-16T19:30:55.611Z",
-  "hostname": "ubuntu-1204"
+  "hostname": "ubuntu-1204",
+  "tags" : ["5266df0f9af46c0e724ef13e", "5266df229af46c0e724ef140"]
   
   ... truncated for brevity
   
