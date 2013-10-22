@@ -135,6 +135,7 @@ Here is an abbreviated example of output.
 |[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record specified by the :id url parameter.|
 |[PUT /api/systems/:id](#put-apisystemsid)|Update properties of the system.|
 |[GET /api/tags](#get-apitags)|Return tags for your organization.|
+|[DELETE /api/systems/:id](#delete-apisystemsid)| Delete system and uninstall agent.|
 |[GET /api/systems/:id/tags](#get-apisystemsidtags)|Get the tags associated to a system.|
 |[PUT /api/systems/:id/tags](#put-apisystemsidtags)|Update the tags associated to a system.|
 
@@ -354,7 +355,6 @@ Sample output...
 | allowSshRootLogin              | Boolean   | *true/false* | If `true` the `root` account will be allowed to login via ssh, if `false` the root account will be denied access via ssh.
 | allowMultiFactorAuthentication | Boolean   | *true/false* | If `true` the multifactor pam module will be enabled and users configured to use multi factor auth will be able take advantage.
 | allowPublicKeyAuthentication   | Boolean   | *true/false* | If `true` the system will allow JumpCloud managed public keys to be used to authenticate users. |
-| agentBoundMessages             | Array     | *[{cmd : "check_patches"}], [{cmd : "get_sys_info"}]* | The `check_patches` command will cause the agent to update its patch state with JumpCloud. The `get_sys_info` will cause the agent to update its system info with JumpCloud. |
 
 
 #### Returns
@@ -364,7 +364,7 @@ Returns a single system object.
 Sample output...
 
 
-### GET /api/tags 
+### DELETE /api/systems/:id
 
 
 ### GET /api/systems/:id/tags
