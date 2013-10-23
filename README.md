@@ -82,7 +82,7 @@ This particular API request is simply requesting the entire system record.
 
 #### Input data
 
-All PUT methods should use the HTTP Content-Type header with a value of application/json for updating record. 
+All PUT methods should use the HTTP Content-Type header with a value of application/json for updating records. 
 
 Here is an example of updating the `displayName` of the system. 
 
