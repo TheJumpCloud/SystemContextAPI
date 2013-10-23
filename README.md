@@ -47,7 +47,7 @@ Get the date in the correct format.
 signstr="GET /api/systems/${systemKey} HTTP/1.1\ndate: ${now}"
 ```
 
-Build a string to sign. The signed string must consist if the [request-line](http://tools.ietf.org/html/rfc2616#page-35) and the date header separated by a new line character.
+Build a string to sign. The signed string must consist of the [request-line](http://tools.ietf.org/html/rfc2616#page-35) and the date header separated by a new line character.
 
 ```
 signature=`printf "$signstr" | openssl dgst -sha256 -sign /opt/jc/client.key | openssl enc -e -a | tr -d '\n'` ;
