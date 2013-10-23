@@ -16,9 +16,9 @@ From the system that has the JumpCloud Agent you can now use the REST API in the
 
 ### Authentication
 
-To allow for secure access to the API you must authentication each API request. 
+To allow for secure access to the API you must authenticate each API request. 
 The JumpCloud API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
-HTTP Signatues is similar to the Amazon Web Services REST API where you send a signature with each request.
+The HTTP Signatues sent with each request are similar to the Amazon Web Services REST API. 
 To help with the request signing process there is an [example bash script](/shell/SigningExample.sh). 
 
 
@@ -47,7 +47,7 @@ Get the date in the correct format.
 signstr="GET /api/systems/${systemKey} HTTP/1.1\ndate: ${now}"
 ```
 
-Build a string to sign. The signed string must consist if the [request-line](http://tools.ietf.org/html/rfc2616#page-35) and the date header separated by a new line character.
+Build a string to sign. The signed string must consist of the [request-line](http://tools.ietf.org/html/rfc2616#page-35) and the date header separated by a new line character.
 
 ```
 signature=`printf "$signstr" | openssl dgst -sha256 -sign /opt/jc/client.key | openssl enc -e -a | tr -d '\n'` ;
@@ -66,7 +66,7 @@ curl -iq \
   --url https://api.jumpcloud.com/api/systems/${systemKey}
 ```
 
-Make the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
+Make sure the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
 This particular API request is simply requesting the entire system record. 
 
 ### Parameters
