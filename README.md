@@ -24,6 +24,8 @@ To help with the request signing process there is an [example bash script](/shel
 
 Let's have a look...
 
+> My personal preference is to have the description first, then the relevant code. I find it makes reading easier.
+
 ```
 #!/bin/bash
 
@@ -129,6 +131,10 @@ Here is an abbreviated example of output.
 ### Routes
 
 **NOTE: The :id url parameter must be associated to the system public key being used to sign API requests. Using an incorrect system id will result in a 401 Unauthorized error.**
+
+> Using the term "public key" may be a little confusing because it doesn't relate to the data at all. Calling it an ID might be more clear (but then also a little redundant). I'm not sure what it should be changed to.
+
+> Missing the system-list method. Also, I think our API allows people to post, but that data will not be useful without also installing an agent.
 
 |Resource|Description|
 |--------|-----------|
@@ -345,6 +351,10 @@ Sample output...
 
 #### Updatable fields
 
+> Are you actually able to set the display name? Will this be overwritten when the agent sends it's next update.
+
+> As of this moment, you can't set tags via name. However I am in the middle of implementing that feature
+
 | Field                          | Data type |Allowed values| Description |
 |--------------------------------|-----------|--------------|-------------|
 | displayName                    | String    | *any string* | The name to display in the UI for a system. |
@@ -382,6 +392,8 @@ Sample output...
 
 
 ### DELETE /api/systems/:id
+
+> My understanding is that this DELETE currently won't uninstall the agent, it will just remove the references. I think that a story is currently being worked on by Rob regarding DEL.
 
 This command will uninstall the agent on the system, then will remove the system and its data once the agent has been uninstalled.
 
