@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl --header 'x-connect-key: <YOUR_CONNECT_KEY>' https://kickstart.jumpcloud.com/Kickstart > /tmp/Kickstart.sh
+chmod 755 /tmp/Kickstart.sh
+cd /tmp
+./Kickstart.sh

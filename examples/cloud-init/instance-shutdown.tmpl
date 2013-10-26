@@ -1,0 +1,22 @@
+#!/bin/bash
+
+initFile="<INIT_FILE>"
+
+echo $initFile | base64 -d > /etc/init.d/instance-shutdown
+
+chmod 755 /etc/init.d/instance-shutdown
+
+which update-rc.d
+ret=$?
+
+if [ -f /etc/init.d/instance-shutdown ]; then
+
+  if [ "$ret" == "0" ]; then
+    update-rc.d instance-shutdown defaults
+  else
+    chkconfig --add instance-shutdown
+  fi
+
+fi
+
+/etc/init.d/instance-shutdown start
