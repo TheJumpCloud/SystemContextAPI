@@ -6,6 +6,7 @@ JumpCloud System Context API
 * [Parameters](#parameters)
 * [Data structures](#data-structures)
 * [Routes](#routes)
+* [Examples](#examples)
 
 ### Introduction
 
@@ -19,7 +20,7 @@ From the system that has the JumpCloud Agent you can now use the REST API in the
 To allow for secure access to the API you must authenticate each API request. 
 The JumpCloud API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
 The HTTP Signatues sent with each request are similar to the Amazon Web Services REST API. 
-To help with the request signing process there is an [example bash script](/shell/SigningExample.sh). 
+To help with the request signing process there is an [example bash script](/examples/shell/SigningExample.sh). 
 
 
 Let's have a look...
@@ -384,6 +385,33 @@ Sample output...
 ### DELETE /api/systems/:id
 
 This command will uninstall the agent on the system, then will remove the system and its data once the agent has been uninstalled.
+
+
+### Examples
+
+#### Signing authentication example
+
+This example demonstrates how to make an authenticated request to the System Context API. 
+The API request is a fetch of the JumpCloud record for this system.
+
+[SigningExample.sh](/examples/shell/SigningExample.sh)
+
+
+#### Shutdown hook 
+
+This example demonstrates calling the API on system shutdown. 
+Using an init.d script registered at run level 0 you can call the System Context API as the system is shutting down.
+
+Take a look at [instance-shutdown-initd](/examples/instance-shutdown-initd) as an example init.d script that only runs at system shutdown.
+
+After customizing the [instance-shutdown-initd](/examples/instance-shutdown-initd) script intall it on your system running the JumpCloud agent...
+
+1. Copy your modified [instance-shutdown-initd](/examples/instance-shutdown-initd) to `/etc/init.d/instance-shutdown`
+2. On Ubuntu run `update-rc.d instance-shutdown defaults` or on RedHat/CentOS run `chkconfig --add instance-shutdown`
+
+
+
+
 
 
 
