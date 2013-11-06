@@ -3,7 +3,7 @@
 
 ##
 ## This example demonstrates how to sign any request to the System Context API.
-## The API cal its self fetches the system record.
+## This API call fetches the system record.
 ##
 
 # Parse the systemKey from the conf file.
