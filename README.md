@@ -64,7 +64,7 @@ curl -iq \
   -H "Accept: application/json" \
   -H "Date: ${now}" \
   -H "Authorization: Signature keyId=\"system/${systemKey}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"${signature}\"" \
-  --url https://api.jumpcloud.com/api/systems/${systemKey}
+  --url https://console.jumpcloud.com/api/systems/${systemKey}
 ```
 
 Make sure the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
@@ -99,7 +99,7 @@ curl -iq \
   -H "Accept: application/json" \
   -H "Date: ${now}" \
   -H "Authorization: Signature keyId=\"system/${systemKey}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"${signature}\"" \
-  --url https://api.jumpcloud.com/api/systems/${systemKey}
+  --url https://console.jumpcloud.com/api/systems/${systemKey}
 
 
 ```
