@@ -10,20 +10,22 @@ JumpCloud System Context API
 
 ### Introduction
 
-The JumpCloud System Context API is a REST API for manipulating the system a JumpCloud Agent is installed on. 
-To use the System Context API you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://console.jumpcloud.com/systems).
-From the system that has the JumpCloud Agent you can now use the REST API in the context of that system. 
+The JumpCloud System Context API is a REST API for manipulating the system on which a JumpCloud Agent is installed.
+To use the System Context API, you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://console.jumpcloud.com/systems).
+Once the JumpCloud Agent is installed, the JumpCloud-enabled system can now use the REST API within its own context.
 
 
 ### Authentication
 
-To allow for secure access to the API you must authenticate each API request. 
+To allow for secure access to the API, you must authenticate each API request.
 The JumpCloud API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
-The HTTP Signatues sent with each request are similar to the Amazon Web Services REST API. 
-To help with the request signing process there is an [example bash script](/examples/shell/SigningExample.sh). 
+The HTTP Signatures sent with each request are similar to the signatures used by the Amazon Web Services REST API.
+To help with the request-signing process, we have provided an [example bash script](/examples/shell/SigningExample.sh).
 
 
-Let's have a look...
+Here is a breakdown of the example script, with explanations...
+
+The first thing the script does is extract the systemKey from the /opt/jc/jcagent.conf file.
 
 ```
 #!/bin/bash
@@ -36,59 +38,59 @@ if [[ $conf =~ $regex ]] ; then
 fi
 ```
 
-Extract the systemKey from the /opt/jc/jcagent.conf file.
+Then the script retrieves the current date in the correct format.
 
 ```
 now=`date -u "+%a, %d %h %Y %H:%M:%S GMT"`;
 ```
 
-Get the date in the correct format.
+Next we build a signing string to demonstrate the expected signature format. The signed string must consist of the [request-line](http://tools.ietf.org/html/rfc2616#page-35) and the date header, separated by a newline character.
 
 ```
 signstr="GET /api/systems/${systemKey} HTTP/1.1\ndate: ${now}"
 ```
 
-Build a string to sign. The signed string must consist of the [request-line](http://tools.ietf.org/html/rfc2616#page-35) and the date header separated by a new line character.
+The next step is to calculate and apply the signature. This is a two-step process:
+
+1. Create a signature from the signing string using the JumpCloud Agent private key: ``printf "$signstr" | openssl dgst -sha256 -sign /opt/jc/client.key``
+1. Then Base64-encode the signature string and trim off the newline characters: ``| openssl enc -e -a | tr -d '\n'``
+
+The combined steps above result in:
 
 ```
 signature=`printf "$signstr" | openssl dgst -sha256 -sign /opt/jc/client.key | openssl enc -e -a | tr -d '\n'` ;
 ```
 
-Create the signed string. The steps here are...
-
-1. Create a signature from the signing string using the JumpCloud Agent private key ``printf "$signstr" | openssl dgst -sha256 -sign /opt/jc/client.key``
-1. Then base64 encode the signature string and trim off the new-line chars ``| openssl enc -e -a | tr -d '\n'``
+Finally, we make sure the API call sending the signature has the same Authorization header and Date header values that were used in the signing string.
+This example API request simply requests the entire system record.
 
 ```
 curl -iq \
   -H "Accept: application/json" \
   -H "Date: ${now}" \
   -H "Authorization: Signature keyId=\"system/${systemKey}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"${signature}\"" \
-  --url https://console.jumpcloud.com/api/systems/${systemKey}
+  --url https://api.jumpcloud.com/api/systems/${systemKey}
 ```
 
-Make sure the API call sending the signature has the Authorization header and the Date header with the same value that was used in the signing string.
-This particular API request is simply requesting the entire system record. 
 
 ### Parameters
 
 |Parameter(s)|Description|Usage|
 |---------|-----------------|-----|
-|`limit` `skip`| `limit` will limit the returned results and `skip` will skip results.  | ` /api/tags?limit=5&skip=1` return records 2 - 6 . |
-|`sort`         | `sort` will sort results by the given field name.                      | `/api/tags?sort=name&limit=5` return tags sorted ascending by name. `/api/tags?sort=-name&limit=5` return tags sorted descending by name. |
-|`fields`       | `fields` is a space separated string of field names to include or exclude from the returning result(s). | `/api/system/:id?fields=-patches -logins` |
+|`limit` `skip`| `limit` will limit the returned results and `skip` will skip results.  | ` /api/tags?limit=5&skip=1` returns records 2 - 6 . |
+|`sort`         | `sort` will sort results by the specified field name.                      | `/api/tags?sort=name&limit=5` returns tags sorted by name in ascending order. `/api/tags?sort=-name&limit=5` returns tags sorted by name in descending order. |
+|`fields`       | `fields` is a space-separated string of field names to include or exclude from the result(s). | `/api/system/:id?fields=-patches -logins` |
 
 
 ### Data structures
 
 #### Input data
 
-All PUT methods should use the HTTP Content-Type header with a value of application/json for updating record. 
+All PUT methods should use the HTTP Content-Type header with a value of 'application/json'. PUT methods are used for updating a record.
 
-Here is an example of updating the `displayName` of the system. 
+The following example demonstrates how to update the `displayName` of the system.
 
 ```
-
 signstr="PUT /api/systems/${systemKey} HTTP/1.1\ndate: ${now}"
 signature=`printf "$signstr" | openssl dgst -sha256 -sign /opt/jc/client.key | openssl enc -e -a | tr -d '\n'` ;
 
@@ -99,17 +101,15 @@ curl -iq \
   -H "Accept: application/json" \
   -H "Date: ${now}" \
   -H "Authorization: Signature keyId=\"system/${systemKey}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"${signature}\"" \
-  --url https://console.jumpcloud.com/api/systems/${systemKey}
-
-
+  --url https://api.jumpcloud.com/api/systems/${systemKey}
 ```
 
 
 #### Output data
 
-All returned data will be [JSON](www.json.org). 
+All results will be formatted as [JSON](www.json.org).
 
-Here is an abbreviated example of output.
+Here is an abbreviated example of response output:
 
 ```
 {
@@ -123,7 +123,6 @@ Here is an abbreviated example of output.
   "firstContact": "2013-10-16T19:30:55.611Z",
   "hostname": "ubuntu-1204" 
   ...
-
 ```
 
 
@@ -133,19 +132,22 @@ Here is an abbreviated example of output.
 
 |Resource|Description|
 |--------|-----------|
-|[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record specified by the :id url parameter.|
-|[PUT /api/systems/:id](#put-apisystemsid)|Update properties of the system.|
-|[DELETE /api/systems/:id](#delete-apisystemsid)| Delete system and uninstall agent.|
+|[GET /api/systems/:id](#get-apisystemsid)|Returns a single system record corresponding to the :id url parameter.|
+|[PUT /api/systems/:id](#put-apisystemsid)|Updates the properties of the system.|
+|[DELETE /api/systems/:id](#delete-apisystemsid)| Uninstalls the JumpCloud agent from the specified system and removes the system from the list of systems managed by JumpCloud.|
+
 
 ### GET /api/systems/:id
 
 #### Parameters
 
-`fields` restrict the fields returned in the system object
+|Parameter(s)|Description|
+|---------|-----------------|
+|`fields`      | restricts the fields returned in the system object |
 
-#### Returns
+#### Returns:
 
-Returns a single system object.
+A single system object corresponding to the specified :id.
 
 Sample output...
 
@@ -342,27 +344,28 @@ Sample output...
 
 #### Parameters
 
-`fields` restrict the returning fields of the updated system object
+|Parameter(s)|Description|
+|---------|-----------------|
+|`fields`       | restricts the list of fields to be returned after updating the system object
 
-#### Updatable fields
+#### Fields that may be updated
 
 | Field                          | Data type |Allowed values| Description |
 |--------------------------------|-----------|--------------|-------------|
-| displayName                    | String    | *any string* | The name to display in the UI for a system. |
-| allowSshPasswordAuthentication | Boolean   | *true/false* | If `true` the system will allow ssh password authentication, if `false` all password authentication attempts will be rejected |
-| allowSshRootLogin              | Boolean   | *true/false* | If `true` the `root` account will be allowed to login via ssh, if `false` the root account will be denied access via ssh.
-| allowMultiFactorAuthentication | Boolean   | *true/false* | If `true` the multifactor pam module will be enabled and users configured to use multi factor auth will be able take advantage.
-| allowPublicKeyAuthentication   | Boolean   | *true/false* | If `true` the system will allow JumpCloud managed public keys to be used to authenticate users. |
-| tags                           | Array     | *array of strings* | The array values should be the ids, or names, of the tag(s) that you want the system to be associated with. The tags passed will replace any existing tags with the supplied list. |
+| displayName                    | String    | *any string* | The name to display for a system in the JumpCloud UI. |
+| allowSshPasswordAuthentication | Boolean   | *true/false* | If `true`, the system will allow SSH password authentication; if `false`, all password-based SSH authentication attempts will be rejected. |
+| allowSshRootLogin              | Boolean   | *true/false* | If `true`, the `root` account will be allowed to login via SSH; if `false`, the root account will be denied access via SSH.
+| allowMultiFactorAuthentication | Boolean   | *true/false* | If `true`, the multi-factor pam module will be enabled and users configured to use multi-factor authentication will be prompted for a second authentication factor.
+| allowPublicKeyAuthentication   | Boolean   | *true/false* | If `true`, the system will allow JumpCloud-managed public keys to be used to authenticate users. |
+| tags                           | Array     | *array of strings* | The array values should be the ids or names of the tag(s) with which the system should be associated. **NOTE: The tags sent with the update request will replace the existing tag associations.** |
 
-#### Returns
+#### Returns:
 
-Returns a single system object.
+The updated system object.
 
-Sample output...
+Sample output (truncated)...
 
 ```
-
 {
   "__v": 0,
   "_id": "525ee96f52e144993e000015",
@@ -374,9 +377,7 @@ Sample output...
   "firstContact": "2013-10-16T19:30:55.611Z",
   "hostname": "ubuntu-1204",
   "tags" : ["5266df0f9af46c0e724ef13e", "5266df229af46c0e724ef140"]
-  
-  ... truncated for brevity
-  
+  ...
 }
 
 ```
@@ -384,30 +385,35 @@ Sample output...
 
 ### DELETE /api/systems/:id
 
-This command will uninstall the agent on the system, then will remove the system and its data once the agent has been uninstalled.
+Requests sent to this route will uninstall the JumpCloud agent from the specified system and remove the system and its data from the list of JumpCloud-managed systems.
+
+#### Parameters
+
+None
 
 
-### Examples
+
+### Additional Examples
 
 #### Signing authentication example
 
-This example demonstrates how to make an authenticated request to the System Context API. 
-The API request is a fetch of the JumpCloud record for this system.
+This example demonstrates how to make an authenticated request to the System Context API (explained previously.)
+The API request simply requests a fetch of the JumpCloud record for this system.
 
 [SigningExample.sh](/examples/shell/SigningExample.sh)
 
 
 #### Shutdown hook 
 
-This example demonstrates calling the API on system shutdown. 
-Using an init.d script registered at run level 0 you can call the System Context API as the system is shutting down.
+This example demonstrates how to make requests to the API on system shutdown.
+Using an init.d script registered at run level 0, you can call the System Context API as the system is shutting down.
 
-Take a look at [instance-shutdown-initd](/examples/instance-shutdown-initd) as an example init.d script that only runs at system shutdown.
+[Instance-shutdown-initd](/examples/instance-shutdown-initd) is an example of an init.d script that only runs at system shutdown.
 
-After customizing the [instance-shutdown-initd](/examples/instance-shutdown-initd) script intall it on your system running the JumpCloud agent...
+After customizing the [instance-shutdown-initd](/examples/instance-shutdown-initd) script, you should install it on the system(s) running the JumpCloud agent...
 
-1. Copy your modified [instance-shutdown-initd](/examples/instance-shutdown-initd) to `/etc/init.d/instance-shutdown`
-2. On Ubuntu run `update-rc.d instance-shutdown defaults` or on RedHat/CentOS run `chkconfig --add instance-shutdown`
+1. Copy the modified [instance-shutdown-initd](/examples/instance-shutdown-initd) to `/etc/init.d/instance-shutdown`
+2. On Ubuntu systems, run `update-rc.d instance-shutdown defaults`. On RedHat/CentOS systems, run `chkconfig --add instance-shutdown`
 
 
 
