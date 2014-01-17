@@ -6,7 +6,8 @@ JumpCloud System Context API
 * [Parameters](#parameters)
 * [Data structures](#data-structures)
 * [Routes](#routes)
-* [Examples](#examples)
+* [Examples](#additional-examples)
+* [Third party](#third-party)
 
 ### Introduction
 
@@ -416,7 +417,15 @@ After customizing the [instance-shutdown-initd](/examples/instance-shutdown-init
 2. On Ubuntu systems, run `update-rc.d instance-shutdown defaults`. On RedHat/CentOS systems, run `chkconfig --add instance-shutdown`
 
 
+### Third party
 
+#### Chef cookbooks
+
+[https://github.com/nshenry03/jumpcloud](https://github.com/nshenry03/jumpcloud)
+
+[https://github.com/cjs226/jumpcloud](https://github.com/cjs226/jumpcloud)
+
+[https://github.com/policygenius/chef-jumpcloud](https://github.com/policygenius/chef-jumpcloud)
 
 
 
