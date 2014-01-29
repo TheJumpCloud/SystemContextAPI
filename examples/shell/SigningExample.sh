@@ -11,7 +11,7 @@
 conf="`cat /opt/jc/jcagent.conf`"
 regex="systemKey\":\"(\w+)\""
 
-if [[ $conf =~ $regex ]] ; then
+if [[ ${conf} =~ $regex ]] ; then
   systemKey="${BASH_REMATCH[1]}"
 fi
 
