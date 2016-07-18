@@ -425,8 +425,6 @@ After customizing the [instance-shutdown-initd](/examples/instance-shutdown-init
 
 [https://github.com/cjs226/jumpcloud](https://github.com/cjs226/jumpcloud)
 
-[https://github.com/policygenius/chef-jumpcloud](https://github.com/policygenius/chef-jumpcloud)
-
 
 
 
