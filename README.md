@@ -392,6 +392,17 @@ Requests sent to this route will uninstall the JumpCloud agent from the specifie
 
 None
 
+###  Configuring users with sudo and sudo without password to a single system
+
+```
+curl \
+-d '{ "SYSTEM_ID" : { "sudoWithoutPassword" : "true", "sudoEnabled" : "true" }}' \
+-X 'PUT' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H "x-api-key: API_KEY" \
+"https://console.jumpcloud.com/api/systemusers/SYSTEM_USER_ID/systems/sudoers"
+```
 
 
 ### Additional Examples
