@@ -22,7 +22,7 @@ The system context API can be used in conjunction with the Groups, Tags and Syst
 [API Documentation.](https://docs.jumpcloud.com/2.0/groups) 
 * Note that the Tags endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/tags)
 * Note that the Systems Users endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systemusers)
-* Note that the Systems endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systems
+* Note that the Systems endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systems)
 
 
 ### Authentication
