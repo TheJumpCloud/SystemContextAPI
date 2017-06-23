@@ -2,10 +2,9 @@ JumpCloud System Context API
 ================
 
 * [Introduction](#introduction)
+* [Supported Endpoints](#endpoints)
 * [Authentication](#authentication)
-* [Parameters](#parameters)
 * [Data structures](#data-structures)
-* [Routes](#routes)
 * [Examples](#additional-examples)
 * [Third party](#third-party)
 
