@@ -18,11 +18,11 @@ Once the JumpCloud Agent is installed, the JumpCloud-enabled system can now use 
 
 The system context API can be used in conjunction with the Groups, Tags and System Users & Systems endpoints found in our [API documention.](https://docs.jumpcloud.com/)
 
-Note that the Groups endpoints are documented under the V2 section of our 
+* Note that the Groups endpoints are documented under the V2 section of our 
 [API Documentation.](https://docs.jumpcloud.com/2.0/groups) 
-Note that the Tags endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/tags)
-Note that the Systems Users endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systemusers)
-Note that the Systems endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systems
+* Note that the Tags endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/tags)
+* Note that the Systems Users endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systemusers)
+* Note that the Systems endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systems
 
 
 ### Authentication
