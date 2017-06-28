@@ -10,7 +10,7 @@ JumpCloud System Context API
 
 ### Introduction
 
-The JumpCloud System Context API is an alternative way to authenticate with a subset JumpCloud's REST APIs. Using this method a system can manage it's information and resource associations, allowing modern auto provisioning environments to scale as needed.
+The JumpCloud System Context API is an alternative way to authenticate with a subset of JumpCloud's REST APIs. Using this method a system can manage it's information and resource associations, allowing modern auto provisioning environments to scale as needed.
 
 ### Supported Endpoints 
 
