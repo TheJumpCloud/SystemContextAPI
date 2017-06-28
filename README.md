@@ -10,32 +10,45 @@ JumpCloud System Context API
 
 ### Introduction
 
-The JumpCloud System Context API is a REST API for manipulating the system on which a JumpCloud Agent is installed.
-To use the System Context API, you must first [create a JumpCloud account](https://console.jumpcloud.com/register/) and [add a system to be managed](https://console.jumpcloud.com/systems).
-Once the JumpCloud Agent is installed, the JumpCloud-enabled system can now use the REST API within its own context.
+The JumpCloud System Context API is an alternative way to authenticate with a subset JumpCloud's REST APIs. Using this method a system can manage it's information and resource associations, allowing modern auto provisioning environments to scale as needed.
 
 ### Supported Endpoints 
 
-The system context API can be used in conjunction with the Groups, Tags and System Users & Systems endpoints found in our [API documention.](https://docs.jumpcloud.com/)
+The system context API can be used in conjunction with Systems endpoints and certain System Group endpoints found in the v2 API. found in our [API documention.](https://docs.jumpcloud.com/)
+
+- A system may fetch, alter, and delete metatdata about itself, including manipulating a system's Tag and Systemuser associations, 
+  - `/api/systems/{system_id}` | `GET` `PUT`
+- A system may delete itself from your JumpCloud organization
+  - `/api/systems/{system_id}` | `DELETE`
+- A system may fetch it's direct resource assocations under v2 (Groups)
+  - `/api/v2/systems/{system_id}/memberof` | `GET`
+  - `/api/v2/systems/{system_id}/associations` | `GET`
+  - `/api/v2/systems/{system_id}/users` | `GET`
+- A system may alter it's direct resource assocations under v2 (Groups)
+  - `/api/v2/systems/{system_id}/associations` | `POST`
+- A system may alter it's System Group associations
+  - `/api/v2/systemgroups/{systemgroup_id}` | `POST`
+    - _NOTE_ If a system attempts to alter the system group membership of a different system the request will be rejected
 
 * Note that the Groups endpoints are documented under the V2 section of our 
 [API Documentation.](https://docs.jumpcloud.com/2.0/groups) 
-* Note that the Tags endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/tags)
-* Note that the Systems Users endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systemusers)
 * Note that the Systems endpoints are documented under the V1 section of our [API Documentation.](https://docs.jumpcloud.com/1.0/systems)
 
+### Response Codes
+
+If endpoints other than those described above are called using the System Context API the server will return a `401` response.
 
 ### Authentication
 
 To allow for secure access to the API, you must authenticate each API request.
-The JumpCloud API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
+The System Context API uses [HTTP Signatures](http://tools.ietf.org/html/draft-cavage-http-signatures-00) to authenticate API requests. 
 The HTTP Signatures sent with each request are similar to the signatures used by the Amazon Web Services REST API.
-To help with the request-signing process, we have provided an [example bash script](/examples/shell/SigningExample.sh).
+To help with the request-signing process, we have provided an [example bash script](/examples/shell/SigningExample.sh). You must be root, or have permissions to access the contents of the `/opt/jc` directory to generate a signature.
 
 
 Here is a breakdown of the example script, with explanations...
 
-The first thing the script does is extract the systemKey from the /opt/jc/jcagent.conf file.
+The first thing the script does is extract the systemKey from the JSON formatted `/opt/jc/jcagent.conf` file.
 
 ```
 #!/bin/bash
@@ -81,8 +94,6 @@ curl -iq \
   -H "Authorization: Signature keyId=\"system/${systemKey}\",headers=\"request-line date\",algorithm=\"rsa-sha256\",signature=\"${signature}\"" \
   --url https://console.jumpcloud.com/api/systems/${systemKey}
 ```
-
-### Data structures
 
 #### Input data
 
