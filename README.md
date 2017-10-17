@@ -14,7 +14,7 @@ The JumpCloud System Context API is an alternative way to authenticate with a su
 
 ### Supported Endpoints 
 
-The system context API can be used in conjunction with Systems endpoints and certain System Group endpoints found in the v2 API. found in our [API documention.](https://docs.jumpcloud.com/)
+The system context API can be used in conjunction with Systems endpoints found in the V1 API and certain System Group endpoints found in the v2 API. You can review our [API documention.](https://docs.jumpcloud.com/) for more details on these endpoints.
 
 - A system may fetch, alter, and delete metatdata about itself, including manipulating a system's Tag and Systemuser associations, 
   - `/api/systems/{system_id}` | `GET` `PUT`
@@ -46,7 +46,7 @@ The HTTP Signatures sent with each request are similar to the signatures used by
 To help with the request-signing process, we have provided an [example bash script](/examples/shell/SigningExample.sh). You must be root, or have permissions to access the contents of the `/opt/jc` directory to generate a signature.
 
 
-Here is a breakdown of the example script, with explanations...
+Here is a breakdown of the example script, with explanations.
 
 The first thing the script does is extract the systemKey from the JSON formatted `/opt/jc/jcagent.conf` file.
 
