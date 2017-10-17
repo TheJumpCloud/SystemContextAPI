@@ -1,3 +1,5 @@
+This file is no longer maintained, for the most current documention on System Context please refer to the [JumpCloud API Documentation](https://docs.jumpcloud.com/1.0/authentication-and-authorization/system-context)
+
 JumpCloud System Context API
 ================
 
